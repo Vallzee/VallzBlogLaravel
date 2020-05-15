@@ -26,13 +26,13 @@
                     </div>
                 </div>
                 <!-- Card Body -->
-                <div class="card-body">
+                <div class="card-body justify-content-center">
 
                     {!! Form::open(['method'=>'POST', 'action'=>'AdminUsersController@store'])!!}
                         {{--NAME--}}
-                        <div class="form-group">{{--text input field--}}
+                        <div class="form-group justify-content-center">{{--text input field--}}
                             {!! Form::label('name','Name:') !!}
-                            {!! Form::text('name',null,['class'=>'form-control col-sm-8']) !!}
+                            {!! Form::text('name',null,['class'=>'form-control col-sm-8 text-center']) !!}
                             {{csrf_field()}}
                         </div>
 
@@ -50,12 +50,21 @@
                         {{csrf_field()}}
                     </div>
 
+
                     {{--STATUS--}}
                         <div class="form-group ">{{--dropdown--}}
                             {!! Form::label('Active_status_id','Status:') !!} &nbsp;
                             {!! Form::select('active_status_id',array(1=>'active',2=>'not active',3=>'suspended'),2,['class'=>'form-control col-sm-8']) !!}
                             {{csrf_field()}}
                         </div>
+
+
+                    {{--PASSWORDFIELD--}}
+                    <div class="form-group">{{--text input field--}}
+                        {!! Form::label('password','Password:') !!}
+                        {!! Form::password('password',['class'=>'form-control col-sm-8']) !!}
+                        {{csrf_field()}}
+                    </div>
 
                         <div class="form-group">{{--submit button--}}
                             {!! Form::submit('Create User',['class'=>'btn btn-primary']) !!}
