@@ -26,51 +26,56 @@
                     </div>
                 </div>
                 <!-- Card Body -->
-                <div class="card-body justify-content-center">
-
-                    {!! Form::open(['method'=>'POST', 'action'=>'AdminUsersController@store'])!!}
+                <div class="card-body justify-content-center row">
+                    <div class="col-7">
+                        {!! Form::open(['method'=>'POST', 'action'=>'AdminUsersController@store'])!!}
                         {{--NAME--}}
                         <div class="form-group justify-content-center">{{--text input field--}}
                             {!! Form::label('name','Name:') !!}
-                            {!! Form::text('name',null,['class'=>'form-control col-sm-8 text-center']) !!}
+                            {!! Form::text('name',null,['class'=>'form-control  text-center']) !!}
                             {{csrf_field()}}
                         </div>
 
-                    {{--EMAIL--}}
+                        {{--EMAIL--}}
                         <div class="form-group">{{--text input field--}}
                             {!! Form::label('email','Email:') !!}
-                            {!! Form::text('email',null,['class'=>'form-control col-sm-8']) !!}
+                            {!! Form::text('email',null,['class'=>'form-control']) !!}
                             {{csrf_field()}}
                         </div>
 
-                    {{--Role--}}
-                    <div class="form-group ">{{--dropdown--}}
-                        {!! Form::label('role_id','Role:') !!} &nbsp;
-                        {!! Form::select('role_id',$roles,3,['class'=>'form-control col-sm-8']) !!}
-                        {{csrf_field()}}
-                    </div>
+                        {{--Role--}}
+                        <div class="form-group ">{{--dropdown--}}
+                            {!! Form::label('role_id','Role:') !!} &nbsp;
+                            {!! Form::select('role_id',$roles,3,['class'=>'form-control']) !!}
+                            {{csrf_field()}}
+                        </div>
 
 
-                    {{--STATUS--}}
+                        {{--STATUS--}}
                         <div class="form-group ">{{--dropdown--}}
                             {!! Form::label('Active_status_id','Status:') !!} &nbsp;
-                            {!! Form::select('active_status_id',array(1=>'active',2=>'not active',3=>'suspended'),2,['class'=>'form-control col-sm-8']) !!}
+                            {!! Form::select('active_status_id',array(1=>'active',2=>'not active',3=>'suspended'),2,['class'=>'form-control']) !!}
                             {{csrf_field()}}
                         </div>
 
 
-                    {{--PASSWORDFIELD--}}
-                    <div class="form-group">{{--text input field--}}
-                        {!! Form::label('password','Password:') !!}
-                        {!! Form::password('password',['class'=>'form-control col-sm-8']) !!}
-                        {{csrf_field()}}
-                    </div>
+                        {{--PASSWORDFIELD--}}
+                        <div class="form-group">{{--text input field--}}
+                            {!! Form::label('password','Password:') !!}
+                            {!! Form::password('password',['class'=>'form-control']) !!}
+                            {{csrf_field()}}
+                        </div>
 
                         <div class="form-group">{{--submit button--}}
                             {!! Form::submit('Create User',['class'=>'btn btn-primary']) !!}
                         </div>
 
-                    {!! Form::close() !!}
+                        {!! Form::close() !!}
+                    </div>
+                    <div class="col-sm-5">
+                        @include('includes.form_errors')
+                    </div>
+
                     {{--<div class="chart-area">
                         <canvas id="myAreaChart"></canvas>
                     </div>--}}
