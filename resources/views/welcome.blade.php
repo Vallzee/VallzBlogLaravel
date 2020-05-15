@@ -8,7 +8,7 @@
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
-
+        <script src='https://kit.fontawesome.com/a076d05399.js'></script>
         <!-- Styles -->
         <style>
             html, body {
@@ -81,7 +81,7 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    Laravel
+                    Vallz Blog <i class="fas fa-grin bg-dark"></i>
                 </div>
 
                 <div class="links">
