@@ -28,18 +28,18 @@
                 <!-- Card Body -->
                 <div class="card-body justify-content-center row">
                     <div class="col-7">
-                        {!! Form::open(['method'=>'POST', 'action'=>'AdminUsersController@store'])!!}
+                        {!! Form::open(['method'=>'POST', 'action'=>'AdminUsersController@store','files'=>true])!!}
                         {{--NAME--}}
                         <div class="form-group justify-content-center">{{--text input field--}}
                             {!! Form::label('name','Name:') !!}
-                            {!! Form::text('name',null,['class'=>'form-control  text-center']) !!}
+                            {!! Form::text('name',null,['class'=>'form-control']) !!}
                             {{csrf_field()}}
                         </div>
 
                         {{--EMAIL--}}
                         <div class="form-group">{{--text input field--}}
                             {!! Form::label('email','Email:') !!}
-                            {!! Form::text('email',null,['class'=>'form-control']) !!}
+                            {!! Form::email('email',null,['class'=>'form-control']) !!}
                             {{csrf_field()}}
                         </div>
 
@@ -53,7 +53,7 @@
 
                         {{--STATUS--}}
                         <div class="form-group ">{{--dropdown--}}
-                            {!! Form::label('Active_status_id','Status:') !!} &nbsp;
+                            {!! Form::label('active_status_id','Status:') !!} &nbsp;
                             {!! Form::select('active_status_id',array(1=>'active',2=>'not active',3=>'suspended'),2,['class'=>'form-control']) !!}
                             {{csrf_field()}}
                         </div>
@@ -63,6 +63,13 @@
                         <div class="form-group">{{--text input field--}}
                             {!! Form::label('password','Password:') !!}
                             {!! Form::password('password',['class'=>'form-control']) !!}
+                            {{csrf_field()}}
+                        </div>
+
+                        {{--FILE UPLOAD--}}
+                        <div class="form-group">{{--text input field--}}
+                            {!! Form::label('file','Upload photo:') !!}
+                            {!! Form::file('file',null,['class'=>'form-control']) !!}
                             {{csrf_field()}}
                         </div>
 
