@@ -1,7 +1,7 @@
 @extends('admin/index')
 
 @section('heading')
-    Users
+    Create Users
 @stop
 <div class="row">
 

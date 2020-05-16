@@ -29,7 +29,7 @@
                 </div>
                 <!-- Card Body -->
                 <div class="card-body">
-                    <table class="table table-responsive">
+                    <table class="table table-striped table-responsive-xl table-hover">
                         <thead class="thead-dark">
                         <tr>
                             <th scope="col"></th>
@@ -47,7 +47,7 @@
                                 <tr>
                                     {{--The photo--}}
                                     <td>
-                                        <img height="60em" width="60" src="{{$user->photo ? $user->photo->file:'no photo'}}" class="rounded-circle">
+                                        <img height="60em" width="60" src="{{$user->photo ? $user->photo->file:'https://placehold.it/400x400'}}" class="rounded-circle">
                                     </td>
                                     <th scope="row">{{$user->id}}</th>
                                     <td>{{$user->name}}</td>
@@ -55,6 +55,7 @@
                                     <td>{{$user->role->name}}</td>
                                     <td>{{$user->created_at->diffForHumans()}}</td>
                                     <td>{{$user->activeStatus->name}}</td>
+                                    <td><a href="{{route('users.edit',$user->id)}}" class="btn btn-circle btn-sm btn-dark">edit</a></td>
                                 </tr>
                             @endforeach
                         @endif
