@@ -35,8 +35,13 @@
         <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">User Options:</h6>
-                <a class="collapse-item" href="buttons.html">All users</a>
-                <a class="collapse-item" href="cards.html">Create User</a>
+                {{--
+                <a class="collapse-item" href="/admin/users">All users</a>
+                <a class="collapse-item" href="/admin/users/create">Create User</a>
+                --}}
+                {{--LINKS USING ROUTE names--}}
+                <a class="collapse-item" href="{{route('users.index')}}">All Users</a>
+                <a class="collapse-item" href="{{route('users.create')}}">Create User</a>
             </div>
         </div>
     </li>

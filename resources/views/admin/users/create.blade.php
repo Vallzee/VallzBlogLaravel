@@ -68,8 +68,8 @@
 
                         {{--FILE UPLOAD--}}
                         <div class="form-group">{{--text input field--}}
-                            {!! Form::label('file','Upload photo:') !!}
-                            {!! Form::file('file',null,['class'=>'form-control']) !!}
+                            {!! Form::label('photo_id','Upload photo:') !!}
+                            {!! Form::file('photo_id',null,['class'=>'form-control']) !!}
                             {{csrf_field()}}
                         </div>
 

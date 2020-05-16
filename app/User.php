@@ -50,4 +50,11 @@ class User extends Authenticatable
     public function activeStatus(){
         return $this->belongsTo("App\ActiveStatus");
     }
+
+    /*
+     * Relationship with the photos
+     * */
+    public function photo(){
+        return $this->belongsTo('App\Photo');
+    }
 }
