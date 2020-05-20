@@ -1,4 +1,4 @@
-@extends('admin/index')
+@extends('admin/adminTheme')
 
 @section('heading')
     Edit User
@@ -74,17 +74,30 @@
                         </div>
 
                         <div class="form-group">{{--submit button--}}
-                            {!! Form::submit('Create User',['class'=>'btn btn-primary']) !!}
+                            {!! Form::submit('Update User',['class'=>'btn btn-success']) !!}
                         </div>
 
                         {!! Form::close() !!}
+
+                        {{--delete button--}}
+                        {!! Form::open(['method'=>'DELETE', 'action'=>['AdminUsersController@destroy',$user->id]])!!}
+
+                            <div class="form-group">{{--delete button--}}
+                                {!! Form::submit('Delete User',['class'=>'btn btn-danger','onclick'=>'return confirm("Are u sure you want to delete?")']) !!}
+                            </div>
+
+                        {!! Form::close() !!}
+
+
                     </div>
                     <div class="col-sm-5">
                         <div class=" text-center row card-body  ">
                             <img height="200" width="200" src="{{$user->photo ? $user->photo->file:'https://placehold.it/400x400'}}" class="rounded-circle img-thumbnail p-0 mx-auto">
                         </div>
                         <div class="row">
-                            @include('includes.form_errors')
+                            <div class="mx-auto">
+                                @include('includes.form_errors')
+                            </div>
                         </div>
                     </div>
 

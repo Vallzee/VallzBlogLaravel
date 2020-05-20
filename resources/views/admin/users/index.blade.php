@@ -1,4 +1,4 @@
-@extends('admin/index')
+@extends('admin.theme.adminTheme')
 
 @section('heading')
     Users
@@ -12,6 +12,16 @@
                 <!-- Card Header - Dropdown -->
                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                     <h6 class="m-0 font-weight-bold text-primary">All Users</h6>
+                    <div class="hidden">
+                        {{--check if the session variable has a value--}}
+                        @if(Session::has('deleted_user'))
+                            <p class="alert alert-danger">{{session('deleted_user')}}</p>
+                            @elseif(Session::has('update_user'))
+                            <p class="alert alert-info">{{session('update_user')}}</p>
+                            @elseif(Session::has('add_user'))
+                            <p class="alert alert-primary">{{session('add_user')}}</p>
+                            @endif
+                    </div>
                     <div class="dropdown no-arrow">
                         <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown"
                            aria-haspopup="true" aria-expanded="false">
@@ -55,7 +65,17 @@
                                     <td>{{$user->role->name}}</td>
                                     <td>{{$user->created_at->diffForHumans()}}</td>
                                     <td>{{$user->activeStatus->name}}</td>
-                                    <td><a href="{{route('users.edit',$user->id)}}" class="btn btn-circle btn-sm btn-dark">edit</a></td>
+                                    <td><a href="{{route('admin.edit',$user->id)}}" class="btn btn-circle btn-sm btn-dark">edit</a></td>
+                                    <td>
+                                        {!! Form::open(['method'=>'DELETE', 'action'=>['AdminUsersController@destroy',$user->id]])!!}
+                                        <div class="form-group">{{--submit button--}}
+                                            {!! Form::button('<i class="fa fa-trash"></i>',['type'=>'submit','class'=>'btn btn-circle btn-sm btn-danger','onclick'=>'return confirm("Do you realy want to delete?")']) !!}
+                                        </div>
+                                        {!! Form::close() !!}
+                                    </td>
+{{--
+                                    <td><a href="{{route('admin.destroy',$user->id,'DELETE')}}" class="btn btn-circle btn-sm btn-danger" onclick="confirm('Do you really want to delete?')">delete</a></td>
+--}}
                                 </tr>
                             @endforeach
                         @endif

@@ -40,8 +40,8 @@
                 <a class="collapse-item" href="/admin/users/create">Create User</a>
                 --}}
                 {{--LINKS USING ROUTE names--}}
-                <a class="collapse-item" href="{{route('users.index')}}">All Users</a>
-                <a class="collapse-item" href="{{route('users.create')}}">Create User</a>
+                <a class="collapse-item" href="{{route('admin.users')}}">All Users</a>
+                <a class="collapse-item" href="{{route('admin.create')}}">Create User</a>
             </div>
         </div>
     </li>

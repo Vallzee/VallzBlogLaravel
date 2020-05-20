@@ -2,11 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\ActiveStatus;
+use App\Http\Requests\UsersEditRequest;
 use App\Http\Requests\UsersRequest;
 use App\photo;
 use App\Role;
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 
 class AdminUsersController extends Controller
 {
@@ -19,10 +22,19 @@ class AdminUsersController extends Controller
     {
         //
         $users = User::all();
+       // view('admin.users.index',compact('users'));
+        return view('admin.index',compact('users'));
+    }
+
+    /*
+     * Display all users
+     *
+     * */
+    public function users(){
+        $users = User::all();
 
         return view('admin.users.index',compact('users'));
     }
-
     /**
      * Show the form for creating a new resource.
      *
@@ -30,9 +42,11 @@ class AdminUsersController extends Controller
      */
     public function create()
     {
-        //
+        //get roles and status from the database
+        $status = ActiveStatus::pluck('name','id');
         $roles = Role::pluck('name','id');
-        return view('admin.users.create',compact('roles'));
+
+        return view('admin.users.create',compact('roles','status'));
     }
 
     /**
@@ -67,6 +81,8 @@ class AdminUsersController extends Controller
         //creating the user with file details
         User::create($input);
 
+        //set a flash message
+        Session::flash('add_user','The user: '.$input['name'].', has been added');
         //persists the data into the database
         //User::create($request->all());
 
@@ -98,8 +114,10 @@ class AdminUsersController extends Controller
         $user = User::findOrFail($id);
         //get the roles
         $roles = Role::pluck('name','id');
+        //get statuses
+        $status = ActiveStatus::pluck('name','id');
 
-        return view('admin.users.edit',compact('user','roles'));
+        return view('admin.users.edit',compact('user','roles','status'));
     }
 
     /**
@@ -109,9 +127,36 @@ class AdminUsersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UsersEditRequest $request, $id)
     {
-        //
+
+        //TODO filter empty password field first and then perfom the encryption
+        if(trim($request['password'])==''){
+            $input = $request->except('password');
+        }else{
+
+            //grab the input
+            $input = $request->all();
+            $input['password'] = bcrypt($request->password);
+
+        }
+        
+        //find the user
+        $user = User::findOrFail($id);
+
+        //check if we have the file
+        if($file = $request->file('photo_id')){
+
+            $name = time().$file->getClientOriginalName();
+            $file->move('images',$name);
+            $photo = Photo::create(['file'=>$name]);
+            $input['photo_id'] = $photo->id;
+        }
+
+        $user->update($input);
+        //set a flash message
+        Session::flash('update_user','The user: '.$user->name.', has been updated');
+        return redirect('admin/users');
 
     }
 
@@ -123,6 +168,11 @@ class AdminUsersController extends Controller
      */
     public function destroy($id)
     {
-        //
+        //delete the user
+        $user = User::find($id);
+        $user->delete();
+        //set a flash message
+        Session::flash('deleted_user','The user: '.$user->name.', has been deleted');
+        return redirect('admin/users/');
     }
 }

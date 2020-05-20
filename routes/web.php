@@ -13,13 +13,30 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('admin.index');
-});
+
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/', function () {
+    return view('home');
+});
 
-//resource that goes to the admin index via the controller
-Route::resource('admin/users','AdminUsersController');
+//Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/home', 'AdminUsersController@index')->name('home');
+
+
+// admin Route group
+Route::group(['middleware' => 'admin'], function (){
+
+        //Route to view all users
+        Route::get("admin/users/",'AdminUsersController@users')->name('admin.users')->middleware('admin');
+
+        //resource that goes to the admin index via the controller
+        Route::resource('/admin','AdminUsersController');
+
+}
+);
+
+
+
+

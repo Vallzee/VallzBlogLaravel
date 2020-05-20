@@ -1,4 +1,4 @@
-@extends('admin/index')
+@extends('admin.theme.adminTheme')
 
 @section('heading')
     Create Users
@@ -52,9 +52,14 @@
 
 
                         {{--STATUS--}}
-                        <div class="form-group ">{{--dropdown--}}
+                        {{--<div class="form-group ">--}}{{--dropdown--}}{{--
                             {!! Form::label('active_status_id','Status:') !!} &nbsp;
                             {!! Form::select('active_status_id',array(1=>'active',2=>'not active',3=>'suspended'),2,['class'=>'form-control']) !!}
+                            {{csrf_field()}}
+                        </div>--}}
+                        <div class="form-group ">{{--dropdown--}}
+                            {!! Form::label('active_status_id','Status:') !!} &nbsp;
+                            {!! Form::select('active_status_id',$status,3,['class'=>'form-control']) !!}
                             {{csrf_field()}}
                         </div>
 

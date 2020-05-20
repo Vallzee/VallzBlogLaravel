@@ -41,20 +41,43 @@ class User extends Authenticatable
      * Relationship to role
      * */
     public function role(){
-        return $this->belongsTo("App\Role");
+        return $this->belongsTo(Role::class);
     }
 
     /*
      * Relationship to active status
      * */
     public function activeStatus(){
-        return $this->belongsTo("App\ActiveStatus");
+        return $this->belongsTo(ActiveStatus::class);
     }
 
     /*
      * Relationship with the photos
      * */
     public function photo(){
-        return $this->belongsTo('App\Photo');
+        return $this->belongsTo(Photo::class);
+    }
+
+    /*
+     * Method to check if user is admin
+     * */
+    public function isAdmin(){
+        if($this->role->name == "administrator"){
+            return true;
+        }
+
+        return false;
+    }
+
+    /*
+     * Method to check if user is active
+     * */
+    public function isActive(){
+        if($this->activeStatus->name == "active"){
+            //echo "You are active";
+            return true;
+        }
+            //echo "You are not active";
+            return false;
     }
 }
