@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
 
-class AdminUsersController extends Controller
+class UsersController extends Controller
 {
     /**
      * Display a listing of the resource.

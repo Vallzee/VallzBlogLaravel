@@ -1,4 +1,4 @@
-@extends('admin/adminTheme')
+@extends('admin.theme.adminTheme')
 
 @section('heading')
     Edit User
@@ -92,7 +92,7 @@
                     </div>
                     <div class="col-sm-5">
                         <div class=" text-center row card-body  ">
-                            <img height="200" width="200" src="{{$user->photo ? $user->photo->file:'https://placehold.it/400x400'}}" class="rounded-circle img-thumbnail p-0 mx-auto">
+                            <img height="200" width="200" src="{{asset($user->photo ? $user->photo->file:'https://placehold.it/400x400')}}" class="rounded-circle img-thumbnail p-0 mx-auto">
                         </div>
                         <div class="row">
                             <div class="mx-auto">

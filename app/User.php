@@ -80,4 +80,28 @@ class User extends Authenticatable
             //echo "You are not active";
             return false;
     }
+
+    /*
+     * Method to check if user is active
+     * */
+    public function isSubscriber(){
+        if($this->role->name == "subscriber"){
+            //return "You are subscriber";
+            return true;
+        }
+        //echo "You are not subscriber";
+        return false;
+    }
+
+    /*
+     * Method to check if user is author
+     * */
+    public function isAuthor(){
+        if($this->role->name == "author"){
+            //return "You are subscriber";
+            return true;
+        }
+        //echo "You are not subscriber";
+        return false;
+    }
 }

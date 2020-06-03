@@ -57,7 +57,7 @@
                                 <tr>
                                     {{--The photo--}}
                                     <td>
-                                        <img height="60em" width="60" src="{{$user->photo ? $user->photo->file:'https://placehold.it/400x400'}}" class="rounded-circle">
+                                        <img height="60em" width="60em" src="{{asset($user->photo ? $user->photo->file:'https://placehold.it/400x400')}}" class="rounded-circle">
                                     </td>
                                     <th scope="row">{{$user->id}}</th>
                                     <td>{{$user->name}}</td>

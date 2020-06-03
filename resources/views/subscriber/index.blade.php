@@ -1,5 +1,4 @@
-hello author you are activated
-
+hello im subscriber you are not activated
 <div class=""{{--"dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown"--}}>
     <a class="btn btn-primary" href="{{ route('logout') }}"
        onclick="event.preventDefault();

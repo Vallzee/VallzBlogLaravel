@@ -19,13 +19,17 @@ class Admin
         //check if user is logged in
         if(Auth::check()){
             //check if the logged in user is an admin
-            if(Auth::user()->isAdmin() && Auth::user()->isActive()){
+            if((Auth::user()->isAdmin())){
+                    return $next($request);
                 //everything went through, return the next request
                 //echo "Admin Middleware applied here";
-                return $next($request);
-            }else{
+            }else if(Auth::user()->isSubscriber()){
                 //echo "Logged in but not admin";
-                return redirect('/home');
+                return redirect('/subscriber');
+            }else if(Auth::user()->isAuthor()){
+                //dd(Auth::user());
+                //return "You are author";
+                return redirect('/author');
             }
         }else{
             //if user is not logged in return to home page

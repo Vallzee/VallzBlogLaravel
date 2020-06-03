@@ -1,4 +1,4 @@
-hello author you are activated
+hello subscriber you are activated
 
 <div class=""{{--"dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown"--}}>
     <a class="btn btn-primary" href="{{ route('logout') }}"
